@@ -8,8 +8,10 @@ import (
 var reader = bufio.NewReader(os.Stdin)
 
 func _read(x *int) {
-	isN := false
-	var b byte
+	var (
+		b   byte
+		isN = false
+	)
 	for b, _ = reader.ReadByte(); b != '-' && (b < '0' || b > '9'); {
 		b, _ = reader.ReadByte()
 	}
