@@ -5,15 +5,15 @@ import (
 	"os"
 )
 
-var reader = bufio.NewReader(os.Stdin)
+var _reader = bufio.NewReader(os.Stdin)
 
 func _read(x *int) {
 	var (
 		b   byte
 		isN = false
 	)
-	for b, _ = reader.ReadByte(); b != '-' && (b < '0' || b > '9'); {
-		b, _ = reader.ReadByte()
+	for b, _ = _reader.ReadByte(); b != '-' && (b < '0' || b > '9'); {
+		b, _ = _reader.ReadByte()
 	}
 	if b == '-' {
 		*x = 0
@@ -21,9 +21,9 @@ func _read(x *int) {
 	} else {
 		*x = int(b - '0')
 	}
-	for b, _ = reader.ReadByte(); b >= '0' && b <= '9'; {
+	for b, _ = _reader.ReadByte(); b >= '0' && b <= '9'; {
 		*x = *x*10 + int(b-'0')
-		b, _ = reader.ReadByte()
+		b, _ = _reader.ReadByte()
 	}
 	if isN {
 		*x = -*x
