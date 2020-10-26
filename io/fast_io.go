@@ -7,7 +7,7 @@ import (
 
 var _reader = bufio.NewReader(os.Stdin)
 
-func _read(x *int) {
+func read(x *int) {
 	var (
 		b   byte
 		isN = false
@@ -29,9 +29,8 @@ func _read(x *int) {
 		*x = -*x
 	}
 }
-
 func Read(args ...*int) {
 	for _, v := range args {
-		_read(v)
+		read(v)
 	}
 }
