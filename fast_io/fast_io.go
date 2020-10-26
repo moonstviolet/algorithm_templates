@@ -1,4 +1,4 @@
-package io
+package fast_io
 
 import (
 	"bufio"
