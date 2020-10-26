@@ -10,7 +10,7 @@ var _reader = bufio.NewReader(os.Stdin)
 func read(x *int) {
 	var (
 		b   byte
-		isN = false
+		isN bool
 	)
 	for b, _ = _reader.ReadByte(); b != '-' && (b < '0' || b > '9'); {
 		b, _ = _reader.ReadByte()
