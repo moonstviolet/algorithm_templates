@@ -1,13 +1,13 @@
 package data_structures
 
-type Node struct {
+type SGTNode struct {
 	l, r int
 	val  int64
 }
 
 type SGT struct {
 	n    int
-	tree []Node
+	tree []SGTNode
 }
 
 func (s *SGT) build(p, l, r int, arr []int) {
@@ -23,7 +23,7 @@ func (s *SGT) build(p, l, r int, arr []int) {
 	s.tree[p].val = s.tree[ls].val + s.tree[rs].val
 }
 func (s *SGT) Build(arr []int, n int) {
-	s.tree = make([]Node, n*4+1)
+	s.tree = make([]SGTNode, n*4+1)
 	s.build(1, 1, n, arr)
 }
 
