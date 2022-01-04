@@ -1,5 +1,7 @@
 package data_structures
 
+import "errors"
+
 const minSize = 16
 
 type Queue struct {
@@ -13,18 +15,19 @@ func NewQueue() *Queue {
 	}
 }
 
-func (q *Queue) Pop() interface{} {
+func (q *Queue) Pop() (ret interface{}, err error) {
 	if q.count <= 0 {
-		panic("queue: Pop() called on empty queue")
+		err = errors.New("queue: Pop() called on empty queue")
+		return
 	}
-	ret := q.data[q.head]
+	ret = q.data[q.head]
 	q.data[q.head] = nil
 	q.head = (q.head + 1) & (len(q.data) - 1)
 	q.count--
 	if len(q.data) > minSize && q.count<<2 == len(q.data) {
 		q.resize()
 	}
-	return ret
+	return
 }
 
 func (q *Queue) Push(elem interface{}) {
@@ -36,21 +39,25 @@ func (q *Queue) Push(elem interface{}) {
 	q.count++
 }
 
-func (q *Queue) Front() interface{} {
+func (q *Queue) Front() (ret interface{}, err error) {
 	if q.count <= 0 {
-		panic("queue: Front() called on empty queue")
+		err = errors.New("queue: Front() called on empty queue")
+		return
 	}
-	return q.data[q.head]
+	ret = q.data[q.head]
+	return
 }
 
-func (q *Queue) Get(idx int) interface{} {
+func (q *Queue) Get(idx int) (ret interface{}, err error) {
 	if idx < 0 {
 		idx += q.count
 	}
 	if idx < 0 || idx > q.count {
-		panic("queue: Get() called with index out of range")
+		err = errors.New("queue: Get() called with index out of range")
+		return
 	}
-	return q.data[(q.head+idx)&(len(q.data)-1)]
+	ret = q.data[(q.head+idx)&(len(q.data)-1)]
+	return
 }
 
 func (q *Queue) Size() int {
