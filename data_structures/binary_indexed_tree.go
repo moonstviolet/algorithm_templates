@@ -28,7 +28,6 @@ func (b *BIT) Add(x, v int) {
 		b.data[x] += int64(v)
 		x += lowbit(x)
 	}
-
 }
 
 func (b *BIT) Query(x int) (sum int64) {
